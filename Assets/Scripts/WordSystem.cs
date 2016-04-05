@@ -11,6 +11,8 @@ public class WordSystem : MonoBehaviour {
     [SerializeField]
     private string opener;
     [SerializeField]
+    private string closer;
+    [SerializeField]
     private Crime[] m_crime = new Crime[3];
     [SerializeField]
     private Sentence[] m_sentence = new Sentence[4];
@@ -37,7 +39,7 @@ public class WordSystem : MonoBehaviour {
 
             if (inputAsInt >= 1 && inputAsInt <= m_sentence.Length)
             {
-                sentenceText.text = "You are sentenced to " + m_sentence[inputAsInt - 1].sentence;
+                sentenceText.text = closer + m_sentence[inputAsInt - 1].sentence;
                 for (int x = 0; x < m_sentence[inputAsInt - 1].punishment.Length; x++)
                 {
                     sentenceText.text += "\n" + (x + 1) + " : " + m_sentence[inputAsInt - 1].punishment[x];
@@ -58,7 +60,12 @@ public class WordSystem : MonoBehaviour {
 
     public void Sentence()
     {
-        sentenceText.text = ("You are sentenced to " + "\n" + "1 : " + m_sentence[0].sentence + "\n" + "2 : " + m_sentence[1].sentence + "\n" + "3 : " + m_sentence[2].sentence + "\n" + "4 : " + m_sentence[3].sentence);
+        sentenceText.text = closer;
+        for (int x = 0; x < m_sentence.Length; x++)
+        {
+            sentenceText.text += ("\n" + (x+1) + " : " + m_sentence[x].sentence);
+        }
+       
     }
 
     public void Generate()
