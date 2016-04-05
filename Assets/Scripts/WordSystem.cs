@@ -43,7 +43,6 @@ public class WordSystem : MonoBehaviour {
                 for (int x = 0; x < m_sentence[inputAsInt - 1].punishment.Length; x++)
                 {
                     sentenceText.text += "\n" + (x + 1) + " : " + m_sentence[inputAsInt - 1].punishment[x];
-                    // sentenceText.text += "\n" + "2 : " + m_sentence[inputAsInt - 1].punishment[1] + "\n" + "3 : " + m_sentence[inputAsInt - 1].punishment[2]);
                 }
 
 
@@ -71,8 +70,8 @@ public class WordSystem : MonoBehaviour {
     public void Generate()
     {
         int rando = UnityEngine.Random.Range(0, m_crime.Length);
-        int cRando = UnityEngine.Random.Range(0, m_crime[rando].committance.Length);
+        int cRando = UnityEngine.Random.Range(0, m_crime[rando].com.Length);
         int sRando = UnityEngine.Random.Range(0, m_crime[rando].subject.Length);
-        crimeText.text = ("" + opener + " " + m_crime[rando].committance[cRando] + " " + m_crime[rando].subject[sRando]);
+        crimeText.text = (opener + " " + m_crime[rando].com[cRando].committance + " " + m_crime[rando].subject[sRando]);
    }
 }

@@ -4,9 +4,10 @@ using System.Collections;
 
 public class Crime
 {
-    
-    public string[] committance;
-    public string[] subject;
 
+    public commit[] com; 
+    
+    public string[] subject;
+    public commit[] subjecte;
 
 }
