@@ -58,12 +58,6 @@
     <Reference Include="UnityEngine.Networking">
       <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.Networking">
-      <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UI">
-      <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
     </Reference>
@@ -88,9 +82,14 @@
     <Compile Include="Assets\ProCore\ProBuilder\API Examples\Icosphere FFT\Scripts\IcoBumpin.cs" />
     <Compile Include="Assets\ProCore\ProBuilder\API Examples\Misc\HueCube.cs" />
     <Compile Include="Assets\ProCore\ProBuilder\API Examples\Runtime Editing\RuntimeEdit.cs" />
-    <Compile Include="Assets\Scripts\Crime.cs" />
-    <Compile Include="Assets\Scripts\Sentence.cs" />
-    <Compile Include="Assets\Scripts\SkinRandomizer.cs" />
+    <Compile Include="Assets\Scripts\CharacterGen\Character.cs" />
+    <Compile Include="Assets\Scripts\CharacterGen\Evidence.cs" />
+    <Compile Include="Assets\Scripts\CharacterGen\SkinRandomizer.cs" />
+    <Compile Include="Assets\Scripts\CharacterGen\Witess.cs" />
+    <Compile Include="Assets\Scripts\CrimeGen\Crime.cs" />
+    <Compile Include="Assets\Scripts\CrimeGen\Sentence.cs" />
+    <Compile Include="Assets\Scripts\CrimeGen\WordSystem.cs" />
+    <Compile Include="Assets\Scripts\CrimeGen\commit.cs" />
     <Compile Include="Assets\Scripts\UI\CursorSetter.cs" />
     <Compile Include="Assets\Scripts\UI\Ended.cs" />
     <Compile Include="Assets\Scripts\UI\Fader.cs" />
@@ -98,8 +97,6 @@
     <Compile Include="Assets\Scripts\UI\MenuLoader.cs" />
     <Compile Include="Assets\Scripts\UI\Pause.cs" />
     <Compile Include="Assets\Scripts\UI\Wait.cs" />
-    <Compile Include="Assets\Scripts\WordSystem.cs" />
-    <Compile Include="Assets\Scripts\commit.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\ProCore\ProBuilder\API Examples\Icosphere FFT\README.txt" />
