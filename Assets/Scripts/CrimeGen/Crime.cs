@@ -7,7 +7,6 @@ public class Crime
 
     public commit[] com; 
     
-    public string[] subject;
     public commit[] subjecte;
 
 }

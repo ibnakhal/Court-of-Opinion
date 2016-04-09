@@ -16,13 +16,17 @@ public class WordSystem : MonoBehaviour {
     private Crime[] m_crime = new Crime[3];
     [SerializeField]
     private Sentence[] m_sentence = new Sentence[4];
+    [SerializeField]
+    private int crimeAccusationCoefficient;
 
+
+    public Character chara;
 	// Use this for initialization
 	void Start ()
     {
         Generate();
         Sentence();
-
+        chara = this.gameObject.GetComponent<Character>();
     }
 
     // Update is called once per frame
@@ -71,7 +75,11 @@ public class WordSystem : MonoBehaviour {
     {
         int rando = UnityEngine.Random.Range(0, m_crime.Length);
         int cRando = UnityEngine.Random.Range(0, m_crime[rando].com.Length);
-        int sRando = UnityEngine.Random.Range(0, m_crime[rando].subject.Length);
-        crimeText.text = (opener + " " + m_crime[rando].com[cRando].committance + " " + m_crime[rando].subject[sRando]);
-   }
+        int sRando = UnityEngine.Random.Range(0, m_crime[rando].subjecte.Length);
+        crimeText.text = (opener + " " + m_crime[rando].com[cRando].committance + " " + m_crime[rando].subjecte[sRando].committance);
+        crimeAccusationCoefficient = m_crime[rando].com[cRando].spectrumValue + m_crime[rando].subjecte[sRando].spectrumValue + chara.coefficient;
+        print(m_crime[rando].com[cRando].spectrumValue);
+        print(m_crime[rando].subjecte[sRando].spectrumValue);
+        print(chara.coefficient);
+    }
 }
