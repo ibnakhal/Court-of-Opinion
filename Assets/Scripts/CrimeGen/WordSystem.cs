@@ -17,12 +17,12 @@ public class WordSystem : MonoBehaviour {
     [SerializeField]
     private Sentence[] m_sentence = new Sentence[4];
     [SerializeField]
-    private int crimeAccusationCoefficient;
+    private float crimeAccusationCoefficient;
 
 
     public Character chara;
 	// Use this for initialization
-	void Start ()
+	public void Start ()
     {
         Generate();
         Sentence();
@@ -30,7 +30,7 @@ public class WordSystem : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update() {
+    public void Update() {
         if (Input.GetKeyDown("e"))
         {
             Generate();
@@ -77,9 +77,17 @@ public class WordSystem : MonoBehaviour {
         int cRando = UnityEngine.Random.Range(0, m_crime[rando].com.Length);
         int sRando = UnityEngine.Random.Range(0, m_crime[rando].subjecte.Length);
         crimeText.text = (opener + " " + m_crime[rando].com[cRando].committance + " " + m_crime[rando].subjecte[sRando].committance);
-        crimeAccusationCoefficient = m_crime[rando].com[cRando].spectrumValue + m_crime[rando].subjecte[sRando].spectrumValue + chara.coefficient;
+
+        float temp = m_crime[rando].com[cRando].spectrumValue + m_crime[rando].subjecte[sRando].spectrumValue;
+        crimeAccusationCoefficient = (temp * chara.WCoefficient) + (temp * chara.ECoefficient);
+        print(crimeAccusationCoefficient + " = " + temp + "*" + chara.WCoefficient + " + " + temp + "*" + chara.ECoefficient);
+
         print(m_crime[rando].com[cRando].spectrumValue);
         print(m_crime[rando].subjecte[sRando].spectrumValue);
-        print(chara.coefficient);
+        print(temp);
+        print(chara.ECoefficient);
+        print(temp * chara.WCoefficient);
+        print(chara.WCoefficient);
+        print(temp * chara.ECoefficient);
     }
 }

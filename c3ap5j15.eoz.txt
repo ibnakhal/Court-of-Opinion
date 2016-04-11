@@ -1,0 +1,40 @@
+﻿
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# Committer: ibnakhal <INAKHAL2@art.edu>
+#
+# On branch master
+# Your branch is up-to-date with 'origin/master'.
+#
+# Changes to be committed:
+#	modified:   .vs/Court-of-Opinion/v14/.suo
+#	modified:   Assets/Scenes/Main.unity
+#	modified:   Assets/Scripts/CharacterGen/Character.cs
+#	modified:   Assets/Scripts/CharacterGen/Evidence.cs
+#	modified:   Assets/Scripts/CrimeGen/Sentence.cs
+#	modified:   Assets/Scripts/CrimeGen/WordSystem.cs
+#	modified:   Assets/Scripts/CrimeGen/WordSystem.cs.meta
+#	modified:   Assets/Scripts/CrimeGen/commit.cs
+#	modified:   Library/assetDatabase3
+#
+# Changes not staged for commit:
+#	modified:   Library/CurrentLayout.dwlt
+#	modified:   Library/CurrentMaximizeLayout.dwlt
+#	modified:   Library/InspectorExpandedItems.asset
+#	modified:   Library/ScriptAssemblies/Assembly-CSharp-Editor.dll
+#	modified:   Library/ScriptAssemblies/Assembly-CSharp-Editor.dll.mdb
+#	modified:   Library/ScriptAssemblies/Assembly-CSharp.dll
+#	modified:   Library/ScriptAssemblies/Assembly-CSharp.dll.mdb
+#	modified:   Library/expandedItems
+#	modified:   Library/metadata/00/00000000000000004000000000000000
+#	modified:   Library/metadata/00/00000000000000006100000000000000
+#	modified:   Library/metadata/70/706eff3b3ce311b4ebf9737496322a37
+#	modified:   Library/metadata/c1/c15e8494433380645b86526a9833eed3
+#	modified:   Library/metadata/cf/cf9b266c80cfb6c488fdd49210a4c59c
+#	modified:   Library/metadata/de/de48ff16559d89047a0377943ed40eae
+#	modified:   Library/metadata/f1/f1a8d806d42111442b9ff30a16114c19
+#	modified:   Library/shadercompiler-UnityShaderCompiler.exe0.log
+#	modified:   ProjectSettings/GraphicsSettings.asset
+#
+

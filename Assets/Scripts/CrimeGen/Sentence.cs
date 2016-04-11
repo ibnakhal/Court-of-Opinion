@@ -5,5 +5,6 @@ public class Sentence {
 
     public string sentence;
     public string[] punishment;
+    public commit[] punish;
 
 }

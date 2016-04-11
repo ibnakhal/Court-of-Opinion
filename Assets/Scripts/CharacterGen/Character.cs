@@ -16,7 +16,9 @@ public class Character : MonoBehaviour {
     public string[] wFirst;
     public string[] nLast;
     private string finalName;
-    public int coefficient;
+    public float ECoefficient;
+    public float WCoefficient;
+
     public enum Class
     {
         Pleb,
@@ -77,10 +79,9 @@ public class Character : MonoBehaviour {
             evText + evidence[rando2].level + "\n" +
             "Children: " + rando3 + "\n"
 
-
-
             );
-        coefficient = witness[rando1].value + evidence[rando2].value;
+        ECoefficient = evidence[rando2].value;
+        WCoefficient = witness[rando1].value;
     }
 
 

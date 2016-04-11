@@ -5,6 +5,6 @@ using System.Collections;
 public class commit
 {
     public string committance;
-    public int spectrumValue;
+    public float spectrumValue;
 
 }
