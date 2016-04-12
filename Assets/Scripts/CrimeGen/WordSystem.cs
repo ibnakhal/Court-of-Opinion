@@ -34,6 +34,7 @@ public class WordSystem : MonoBehaviour {
         if (Input.GetKeyDown("e"))
         {
             Generate();
+            Sentence();
         }
         string inputThisFrame = Input.inputString;
         try
@@ -44,9 +45,9 @@ public class WordSystem : MonoBehaviour {
             if (inputAsInt >= 1 && inputAsInt <= m_sentence.Length)
             {
                 sentenceText.text = closer + m_sentence[inputAsInt - 1].sentence;
-                for (int x = 0; x < m_sentence[inputAsInt - 1].punishment.Length; x++)
+                for (int x = 0; x < m_sentence[inputAsInt - 1].punish.Length; x++)
                 {
-                    sentenceText.text += "\n" + (x + 1) + " : " + m_sentence[inputAsInt - 1].punishment[x];
+                    sentenceText.text += "\n" + (x + 1) + " : " + m_sentence[inputAsInt - 1].punish[x].committance;
                 }
 
 
@@ -66,7 +67,7 @@ public class WordSystem : MonoBehaviour {
         sentenceText.text = closer;
         for (int x = 0; x < m_sentence.Length; x++)
         {
-            sentenceText.text += ("\n" + (x+1) + " : " + m_sentence[x].sentence);
+            sentenceText.text += ("\n" + (x+1) + " : " + m_sentence[x].sentenced.committance);
         }
        
     }

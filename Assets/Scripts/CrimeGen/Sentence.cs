@@ -4,7 +4,7 @@ using System.Collections;
 public class Sentence {
 
     public string sentence;
-    public string[] punishment;
+    public commit sentenced;
     public commit[] punish;
 
 }
