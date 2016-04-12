@@ -18,7 +18,20 @@ public class WordSystem : MonoBehaviour {
     private Sentence[] m_sentence = new Sentence[4];
     [SerializeField]
     private float crimeAccusationCoefficient;
+    [SerializeField]
+    private int upperRange;
+    [SerializeField]
+    private int upperMidRange;
+    [SerializeField]
+    private int lowerMidRange;
+    [SerializeField]
+    private int zero;
+    [SerializeField]
+    private bool firstSelection;
 
+
+
+    private Stats stat;
 
     public Character chara;
 	// Use this for initialization
@@ -27,6 +40,7 @@ public class WordSystem : MonoBehaviour {
         Generate();
         Sentence();
         chara = this.gameObject.GetComponent<Character>();
+        stat = GameObject.FindGameObjectWithTag("Stat").GetComponent<Stats>();
     }
 
     // Update is called once per frame
@@ -42,19 +56,40 @@ public class WordSystem : MonoBehaviour {
 
             int inputAsInt = Convert.ToInt32(inputThisFrame);
 
-            if (inputAsInt >= 1 && inputAsInt <= m_sentence.Length)
+            if (firstSelection)
             {
-                sentenceText.text = closer + m_sentence[inputAsInt - 1].sentence;
-                for (int x = 0; x < m_sentence[inputAsInt - 1].punish.Length; x++)
+                if (inputAsInt >= 1 && inputAsInt <= m_sentence.Length)
                 {
-                    sentenceText.text += "\n" + (x + 1) + " : " + m_sentence[inputAsInt - 1].punish[x].committance;
+                    if (m_sentence[inputAsInt - 1].sentenced.spectrumValue >= upperRange)
+                    {
+                        stat.execution++;
+                        if(crimeAccusationCoefficient < 40)
+                        {
+                            stat.wrongExe++;
+                        }
+                    }
+                    firstSelection = false;
+                    Generate();
+                    Sentence();
                 }
-
-
-
-
-
             }
+           else if (!firstSelection)
+            {
+                if (inputAsInt >= 1 && inputAsInt <= m_sentence.Length)
+                {
+                    sentenceText.text = closer + m_sentence[inputAsInt - 1].sentence;
+                    for (int x = 0; x < m_sentence[inputAsInt - 1].punish.Length; x++)
+                    {
+                        sentenceText.text += "\n" + (x + 1) + " : " + m_sentence[inputAsInt - 1].punish[x].committance;
+                    }
+
+
+
+
+                    firstSelection = true;
+                }
+            }
+       
         }
         catch (FormatException)
         {
@@ -65,9 +100,13 @@ public class WordSystem : MonoBehaviour {
     public void Sentence()
     {
         sentenceText.text = closer;
-        for (int x = 0; x < m_sentence.Length; x++)
+        if (!firstSelection)
         {
-            sentenceText.text += ("\n" + (x+1) + " : " + m_sentence[x].sentenced.committance);
+            for (int x = 0; x < m_sentence.Length; x++)
+            {
+                sentenceText.text += ("\n" + (x + 1) + " : " + m_sentence[x].sentenced.committance);
+            }
+
         }
        
     }

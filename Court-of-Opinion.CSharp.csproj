@@ -58,12 +58,6 @@
     <Reference Include="UnityEngine.Networking">
       <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.Networking">
-      <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UI">
-      <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
     </Reference>
@@ -96,6 +90,7 @@
     <Compile Include="Assets\Scripts\CrimeGen\Sentence.cs" />
     <Compile Include="Assets\Scripts\CrimeGen\WordSystem.cs" />
     <Compile Include="Assets\Scripts\CrimeGen\commit.cs" />
+    <Compile Include="Assets\Scripts\Stats.cs" />
     <Compile Include="Assets\Scripts\UI\CursorSetter.cs" />
     <Compile Include="Assets\Scripts\UI\Ended.cs" />
     <Compile Include="Assets\Scripts\UI\Fader.cs" />
