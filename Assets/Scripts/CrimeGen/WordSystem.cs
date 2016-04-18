@@ -101,7 +101,7 @@ public class WordSystem : MonoBehaviour {
                             stat.failJailed++;
                         }
                     }
-                    if ( sentencing.spectrumValue < zero)
+                    if ( sentencing.spectrumValue <= zero)
                     {
                         stat.absolved++;
                         print(crimeAccusationCoefficient);
@@ -113,11 +113,12 @@ public class WordSystem : MonoBehaviour {
                     }
                     status = State.Method;
 
-                    sentenceText.text = closer + sentencing;
+                    sentenceText.text = closer + sentencing.committance;
                     for (int x = 0; x < m_sentence[inputAsInt - 1].punish.Length; x++)
                     {
                         sentenceText.text += "\n" + (x + 1) + " : " + m_sentence[inputAsInt - 1].punish[x].committance;
                     }
+
 
                 }
             }
@@ -144,12 +145,12 @@ public class WordSystem : MonoBehaviour {
         sentenceText.text = closer;
 
 
-        for (int x = 0; x < m_sentence.Length; x++)
+        for (int x = 0; x < 5; x++)
         {
             sentenceText.text += ("\n" + (x + 1) + " : " + m_sentence[x].sentenced.committance);
             print(m_sentence[x].sentenced.committance);
         }
-
+        sentenceText.text += "\n" ;
 
 
     }

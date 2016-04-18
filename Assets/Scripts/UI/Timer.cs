@@ -14,6 +14,8 @@ public class Timer : MonoBehaviour {
     private int increment;
     [SerializeField]
     private Text tText;
+    [SerializeField]
+    private int threshold;
 
 	// Use this for initialization
 	void Start () {
@@ -43,6 +45,11 @@ public class Timer : MonoBehaviour {
         else
         {
             tText.text += (":" + minute);
+        }
+
+        if(hour==threshold)
+        {
+
         }
 	}
 
