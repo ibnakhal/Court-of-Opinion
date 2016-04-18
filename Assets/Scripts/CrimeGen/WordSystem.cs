@@ -3,6 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using System;
+
+public enum State
+{
+    Type,
+    Method
+}
+
 public class WordSystem : MonoBehaviour {
     [SerializeField]
     private Text crimeText;
@@ -15,7 +22,7 @@ public class WordSystem : MonoBehaviour {
     [SerializeField]
     private Crime[] m_crime = new Crime[3];
     [SerializeField]
-    private Sentence[] m_sentence = new Sentence[4];
+    private Sentence[] m_sentence = new Sentence[5];
     [SerializeField]
     private float crimeAccusationCoefficient;
     [SerializeField]
@@ -29,65 +36,100 @@ public class WordSystem : MonoBehaviour {
     [SerializeField]
     private bool firstSelection;
 
-
+    public State status;
 
     private Stats stat;
 
     public Character chara;
-	// Use this for initialization
+	
+
+    
+    // Use this for initialization
 	public void Start ()
     {
-        Generate();
-        Sentence();
         chara = this.gameObject.GetComponent<Character>();
         stat = GameObject.FindGameObjectWithTag("Stat").GetComponent<Stats>();
+        chara.Rand();
+        Generate();
+        Sentence();
+
     }
 
     // Update is called once per frame
     public void Update() {
         if (Input.GetKeyDown("e"))
         {
+            chara.Rand();
             Generate();
             Sentence();
+
         }
         string inputThisFrame = Input.inputString;
         try
         {
 
             int inputAsInt = Convert.ToInt32(inputThisFrame);
+            print(inputAsInt);
+            print(inputThisFrame);
 
-            if (firstSelection)
+            if (status == State.Type)
             {
+
+                commit sentencing = m_sentence[inputAsInt - 1].sentenced;
+
                 if (inputAsInt >= 1 && inputAsInt <= m_sentence.Length)
                 {
-                    if (m_sentence[inputAsInt - 1].sentenced.spectrumValue >= upperRange)
+                    if (sentencing.spectrumValue >= upperRange)
                     {
                         stat.execution++;
-                        if(crimeAccusationCoefficient < 40)
+                        print(crimeAccusationCoefficient);
+                        if (crimeAccusationCoefficient < upperRange)
                         {
                             stat.wrongExe++;
                         }
                     }
-                    firstSelection = false;
-                    Generate();
-                    Sentence();
-                }
-            }
-           else if (!firstSelection)
-            {
-                if (inputAsInt >= 1 && inputAsInt <= m_sentence.Length)
-                {
-                    sentenceText.text = closer + m_sentence[inputAsInt - 1].sentence;
+                    if (sentencing.spectrumValue >= upperMidRange && sentencing.spectrumValue < upperRange)
+                    {
+                        stat.jail++;
+                        print(crimeAccusationCoefficient);
+                        if (crimeAccusationCoefficient < upperMidRange)
+                        {
+                            stat.wrongJail++;
+                        }
+                        if(crimeAccusationCoefficient > upperMidRange)
+                        {
+                            stat.failJailed++;
+                        }
+                    }
+                    if ( sentencing.spectrumValue < zero)
+                    {
+                        stat.absolved++;
+                        print(crimeAccusationCoefficient);
+
+                        if (crimeAccusationCoefficient > zero)
+                        {
+                            stat.failedAbsolution++;
+                        }
+                    }
+                    status = State.Method;
+
+                    sentenceText.text = closer + sentencing;
                     for (int x = 0; x < m_sentence[inputAsInt - 1].punish.Length; x++)
                     {
                         sentenceText.text += "\n" + (x + 1) + " : " + m_sentence[inputAsInt - 1].punish[x].committance;
                     }
 
-
-
-
-                    firstSelection = true;
                 }
+            }
+           else if (status == State.Method)
+            {
+                if (inputAsInt >= 1 && inputAsInt <= m_sentence.Length)
+                {
+                    status = State.Type;
+                }
+                chara.Rand();
+                Generate();
+                Sentence();
             }
        
         }
@@ -100,19 +142,21 @@ public class WordSystem : MonoBehaviour {
     public void Sentence()
     {
         sentenceText.text = closer;
-        if (!firstSelection)
-        {
-            for (int x = 0; x < m_sentence.Length; x++)
-            {
-                sentenceText.text += ("\n" + (x + 1) + " : " + m_sentence[x].sentenced.committance);
-            }
 
+
+        for (int x = 0; x < m_sentence.Length; x++)
+        {
+            sentenceText.text += ("\n" + (x + 1) + " : " + m_sentence[x].sentenced.committance);
+            print(m_sentence[x].sentenced.committance);
         }
-       
+
+
+
     }
 
     public void Generate()
     {
+        
         int rando = UnityEngine.Random.Range(0, m_crime.Length);
         int cRando = UnityEngine.Random.Range(0, m_crime[rando].com.Length);
         int sRando = UnityEngine.Random.Range(0, m_crime[rando].subjecte.Length);
@@ -120,14 +164,5 @@ public class WordSystem : MonoBehaviour {
 
         float temp = m_crime[rando].com[cRando].spectrumValue + m_crime[rando].subjecte[sRando].spectrumValue;
         crimeAccusationCoefficient = (temp * chara.WCoefficient) + (temp * chara.ECoefficient);
-        print(crimeAccusationCoefficient + " = " + temp + "*" + chara.WCoefficient + " + " + temp + "*" + chara.ECoefficient);
-
-        print(m_crime[rando].com[cRando].spectrumValue);
-        print(m_crime[rando].subjecte[sRando].spectrumValue);
-        print(temp);
-        print(chara.ECoefficient);
-        print(temp * chara.WCoefficient);
-        print(chara.WCoefficient);
-        print(temp * chara.ECoefficient);
     }
 }
