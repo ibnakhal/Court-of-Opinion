@@ -12,6 +12,10 @@ public enum State
 
 public class WordSystem : MonoBehaviour {
     [SerializeField]
+    private int upperFailureThreshold;
+    [SerializeField]
+    private int lowerFailureThreshold;
+    [SerializeField]
     private Text crimeText;
     [SerializeField]
     private Text sentenceText;
@@ -49,6 +53,7 @@ public class WordSystem : MonoBehaviour {
     {
         chara = this.gameObject.GetComponent<Character>();
         stat = GameObject.FindGameObjectWithTag("Stat").GetComponent<Stats>();
+        GameCheck();
         stat.clearDaily();
         chara.Rand();
         Generate();
@@ -56,22 +61,40 @@ public class WordSystem : MonoBehaviour {
 
     }
 
-    // Update is called once per frame
-    public void Update() {
-        if (Input.GetKeyDown("e"))
+    public void GameCheck()
+    {
+        int fail = (stat.totalFailedAbsolution + stat.totalFailJail);
+        int wrong = (stat.totalWrongJail + stat.TotalExecutions);
+        if (wrong >= upperFailureThreshold)
         {
-            chara.Rand();
-            Generate();
-            Sentence();
+            stat.Condition = Stats.loss.wrong;
+            Application.LoadLevel(4);
+        }
+        if(fail >= lowerFailureThreshold)
+        {
+            stat.Condition = Stats.loss.fail;
+            Application.LoadLevel(4);
 
         }
+
+    }
+
+
+    // Update is called once per frame
+    public void Update() {
+        //if (Input.GetKeyDown("e"))
+        //{
+        //    chara.Rand();
+        //    Generate();
+        //    Sentence();
+
+        //}
         string inputThisFrame = Input.inputString;
         try
         {
 
             int inputAsInt = Convert.ToInt32(inputThisFrame);
-            print(inputAsInt);
-            print(inputThisFrame);
+
 
             if (status == State.Type)
             {
@@ -83,33 +106,40 @@ public class WordSystem : MonoBehaviour {
                     if (sentencing.spectrumValue >= upperRange)
                     {
                         stat.execution++;
-                        print(crimeAccusationCoefficient);
+                        stat.executiontotal++;
+
                         if (crimeAccusationCoefficient < upperRange)
                         {
                             stat.wrongExe++;
+                            stat.TotalExecutions++;
                         }
                     }
                     if (sentencing.spectrumValue >= upperMidRange && sentencing.spectrumValue < upperRange)
                     {
                         stat.jail++;
-                        print(crimeAccusationCoefficient);
+                        stat.jailtotal++;
+
                         if (crimeAccusationCoefficient < upperMidRange)
                         {
                             stat.wrongJail++;
+                            stat.totalWrongJail++;
                         }
                         if(crimeAccusationCoefficient > upperMidRange)
                         {
                             stat.failJailed++;
+                            stat.totalFailJail++;
                         }
                     }
                     if ( sentencing.spectrumValue <= zero)
                     {
                         stat.absolved++;
-                        print(crimeAccusationCoefficient);
+                        stat.absolutionTotal++;
+
 
                         if (crimeAccusationCoefficient > zero)
                         {
                             stat.failedAbsolution++;
+                            stat.totalFailedAbsolution++;
                         }
                     }
                     status = State.Method;

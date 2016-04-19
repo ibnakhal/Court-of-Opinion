@@ -41,8 +41,11 @@ public class IntermissionDisplay : MonoBehaviour {
         tickSource.Play();
         statText.text += ("\n" + "Absolutions : " + stat.absolved);
         yield return new WaitForSeconds(tickSource.clip.length);
-        tickSource.Pause();
+        tickSource.Play();
         statText.text += ("\n" + "Guilty Not Punished : " + (stat.failedAbsolution));
+        yield return new WaitForSeconds(tickSource.clip.length);
+        tickSource.Pause();
+        statText.text += ("\n" + "Public Favor : " + (stat.favor) + "%");
         this.GetComponent<AudioSource>().Play();
         for(int x = 0; x<buttons.Length;x++)
         {

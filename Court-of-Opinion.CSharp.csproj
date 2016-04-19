@@ -90,6 +90,7 @@
     <Compile Include="Assets\Scripts\CrimeGen\Sentence.cs" />
     <Compile Include="Assets\Scripts\CrimeGen\WordSystem.cs" />
     <Compile Include="Assets\Scripts\CrimeGen\commit.cs" />
+    <Compile Include="Assets\Scripts\GameOver.cs" />
     <Compile Include="Assets\Scripts\IntermissionDisplay.cs" />
     <Compile Include="Assets\Scripts\Stats.cs" />
     <Compile Include="Assets\Scripts\UI\ButtonSystem.cs" />
