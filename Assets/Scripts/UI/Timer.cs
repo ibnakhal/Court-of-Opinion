@@ -16,7 +16,14 @@ public class Timer : MonoBehaviour {
     private Text tText;
     [SerializeField]
     private int threshold;
+    [SerializeField]
+    private GameObject FadePanel;
+    [SerializeField]
+    private AudioSource clockSource;
+    [SerializeField]
+    private AudioSource alarmSource;
 
+    private bool trigger = false;
 	// Use this for initialization
 	void Start () {
         StartCoroutine(Timed());
@@ -47,11 +54,14 @@ public class Timer : MonoBehaviour {
             tText.text += (":" + minute);
         }
 
-        if(hour==threshold)
+        if(hour==threshold && !trigger)
         {
-
+            FadePanel.SetActive(true);
+            clockSource.Pause();
+            alarmSource.Play();
+            trigger = true;
         }
-	}
+    }
 
     public IEnumerator Timed()
     {

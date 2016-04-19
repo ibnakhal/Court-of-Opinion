@@ -8,6 +8,10 @@ public class GameFade : MonoBehaviour {
     private bool fadein = false;
     [SerializeField]
     private int levelLoad;
+    [SerializeField]
+    private bool dayEnd;
+    [SerializeField]
+    private int levelIntermission;
 
     private CanvasGroup g;
     void Start()
@@ -36,6 +40,7 @@ public class GameFade : MonoBehaviour {
         if(lerpValue >= 1)
         {
             lerpValue = 1;
+            Complete();
         }
 
     }
@@ -43,6 +48,11 @@ public class GameFade : MonoBehaviour {
     public void Complete()
     {
         fadein = false;
+        if(dayEnd)
+        {
+            Application.LoadLevel(levelIntermission);
+        }
+        Destroy(this.gameObject);
     }
 
 

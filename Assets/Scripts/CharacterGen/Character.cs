@@ -80,7 +80,7 @@ public class Character : MonoBehaviour {
             classText + fooClass.ToString() + "\n" +
             credText + witness[rando1].witness + "\n" +
             evText + evidence[rando2].level + "\n" +
-            "Previous Infractioins: " + rando6 + "\n" +
+            "Previous Infractions: " + rando6 + "\n" +
             family + rando3          
             );
         //assigns values belonging to random witness and evidence for later use.

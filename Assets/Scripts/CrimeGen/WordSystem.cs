@@ -49,6 +49,7 @@ public class WordSystem : MonoBehaviour {
     {
         chara = this.gameObject.GetComponent<Character>();
         stat = GameObject.FindGameObjectWithTag("Stat").GetComponent<Stats>();
+        stat.clearDaily();
         chara.Rand();
         Generate();
         Sentence();
